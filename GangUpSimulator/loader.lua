@@ -36,11 +36,11 @@ if game.PlaceId == 5610197459 then
         wait(1)
         rconsoleprint('@@GREEN@@')
         rconsoleprint('Script Executed!') wait(.5)
-        loadstring(game:HttpGet("https://gist.githubusercontent.com/InfinityMercury/bcec4f5d1417f97700faa998784994fc/raw/440e39e9731751d3ec72207f2c7b21bb4b6eb730/GangUpSimulator.lua",true))()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/InfinityMercury/f355cfbc7d0b1811c12875c8d7d6a40a/raw/211e0635f4668a6bde50a6fb39e5663b9c97ddb3/GangUpSimulator.lua",true))()
     else
         warn('Exploit is not Krnl, is: '..identifyexecutor())
         wait(1)
-        loadstring(game:HttpGet("https://gist.githubusercontent.com/InfinityMercury/bcec4f5d1417f97700faa998784994fc/raw/440e39e9731751d3ec72207f2c7b21bb4b6eb730/GangUpSimulator.lua",true))()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/InfinityMercury/f355cfbc7d0b1811c12875c8d7d6a40a/raw/211e0635f4668a6bde50a6fb39e5663b9c97ddb3/GangUpSimulator.lua",true))()
         warn('Script Executed, Welcome '..game.Players.LocalPlayer.Name)
     end
 
