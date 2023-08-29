@@ -1,3 +1,7 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/InfinityMercury/Scripts/main/GangUpSimulator/AdminDetector.lua",true))()
+
+
+
 local function getexploit()
   local exploit =
       (syn and not is_sirhurt_closure and not pebc_execute and "Synapse") or
@@ -31,6 +35,7 @@ if game.PlaceId == 5610197459 then
         wait(1)
         rconsoleinfo('Version Hub: 1.0')
         rconsoleinfo('Hub Status: Beta')
+        rconsoleinfo('Admin Detector: true')
         rconsoleinfo('Script Executed: '..os.date("%I:%M:%S")..' | '..os.date("%B %d, %Y"))
         rconsoleinfo('Credits: InfinityMercury')
         wait(1)
@@ -42,6 +47,7 @@ if game.PlaceId == 5610197459 then
         wait(1)
         loadstring(game:HttpGet("https://gist.githubusercontent.com/InfinityMercury/f355cfbc7d0b1811c12875c8d7d6a40a/raw/211e0635f4668a6bde50a6fb39e5663b9c97ddb3/GangUpSimulator.lua",true))()
         warn('Script Executed, Welcome '..game.Players.LocalPlayer.Name)
+        warn('Admin Detector: true')
     end
 
 else
