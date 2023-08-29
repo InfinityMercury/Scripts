@@ -33,7 +33,7 @@ if game.PlaceId == 5610197459 then
         wait(4)
         rconsoleprint('Game Supported! Game: '..game:GetService('MarketplaceService'):GetProductInfo(game.PlaceId).Name..'\n\n')
         wait(1)
-        rconsoleinfo('Version Hub: 1.0')
+        rconsoleinfo('Version Hub: 1.6')
         rconsoleinfo('Hub Status: Beta')
         rconsoleinfo('Admin Detector: true')
         rconsoleinfo('Script Executed: '..os.date("%I:%M:%S")..' | '..os.date("%B %d, %Y"))
@@ -53,3 +53,7 @@ if game.PlaceId == 5610197459 then
 else
     game.Players.LocalPlayer:Kick('game not supported :(')
 end
+
+
+
+-- loadstring(game:HttpGet('https://raw.githubusercontent.com/InfinityMercury/Scripts/main/GangUpSimulator/loader.lua'))()
