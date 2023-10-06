@@ -1,26 +1,4 @@
 --[ Variables ]--
-function FixLabel()
-    for _, v in pairs(game:GetService('CoreGui'):GetDescendants()) do
-        if v:IsA('ScreenGui') and v.Name == 'Rayfield' then
-            for _, x in pairs(v:GetDescendants()) do
-                if x:IsA('Frame') and x.Name == 'Label' then
-                    x.UIStroke.Color = Color3.fromRGB(6, 134, 138)
-                end
-            end
-        end
-    end
-end
-function FixTopBar()
-    for _, v in pairs(game:GetService('CoreGui'):GetDescendants()) do
-        if v:IsA('ScreenGui') and v.Name == 'Rayfield' then
-            v.Main.Topbar.BackgroundColor3 = Color3.fromRGB(0, 63, 63)
-            wait(.1)
-            v.Main.Topbar.CornerRepair.BackgroundColor3 = Color3.fromRGB(0, 63, 63)
-            wait(.1) v.Main.Topbar.Divider.BackgroundColor3 = Color3.fromRGB(4, 141, 149)
-            wait(.25)
-        end
-    end
-end
 local ESP = Instance.new(
     "Folder",
     workspace
@@ -122,44 +100,41 @@ local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 
 
 --[ Library ]--
-getgenv().SecureMode = true
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/InfinityMercury/UiLibray/main/Rayfield/Remake.lua'))()
-local Window = Rayfield:CreateWindow({
-   Name = "Infinity Hub | v2.5 | Flee The Facility",
-   LoadingTitle = "Infinity Hub Loader",
-   LoadingSubtitle = "by InfinityMercury",
-   ConfigurationSaving = {
-      Enabled = true,
-      FolderName = 'InfHub',
-      FileName = "InfHub FTF"
-   },
-   Discord = {
-      Enabled = false,
-      Invite = "",
-      RememberJoins = false
-   },
-   KeySystem = false,
-   KeySettings = {
-      Title = "",
-      Subtitle = "",
-      Note = "",
-      FileName = "Key",
-      SaveKey = true,
-      GrabKeyFromSite = false,
-      Key = {"cum"}
-   }
+local DevTools = loadstring(game:HttpGet("https://raw.githubusercontent.com/05-4/DevTools/main/index.lua"))()
+local Window = DevTools:Init({
+    Name = "Infinity Hub | Main Hub",
+    Title = "Infinity Hub",
+    Subtitle = "by Infinity Mercury",
+    Icon = "rbxassetid://10723415766",
+    LoadingBackgroundImage = "rbxassetid://14980847307",
+    Options = {
+        KillYourself = false,
+        FOVAnimations = false,
+    }
 })
 
 
 
-
 --[ Tabs ]--
-local Tab = Window:CreateTab("Farming", 7743866529)
-local Section = Tab:CreateSection("[ Farming Options ]")
-local Toggle = Tab:CreateToggle({
+local farmingTab = Window:CreateTab({
+    Name = "Farming",
+    Icon = "rbxassetid://7743866529"
+})
+local playerTab = Window:CreateTab({
+    Name = "Player",
+    Icon = "rbxassetid://7743866529"
+})
+local espTab = Window:CreateTab({
+    Name = "Esp",
+    Icon = "rbxassetid://7743866529"
+})
+
+
+
+--[ Code ]--
+local Section = farmingTab:CreateSection("[ Farming Options ]")
+farmingTab:CreateToggle({
     Name = "Auto Hack",
-    CurrentValue = false,
-    Flag = "Toggle1",
     Callback = function(bool)
         autoHack = bool
         while autoHack do task.wait()
@@ -167,7 +142,7 @@ local Toggle = Tab:CreateToggle({
         end
     end,
 })
-local Button = Tab:CreateButton({
+farmingTab:CreateButton({
     Name = "Check Beast",
     Callback = function()
         for _, v in pairs(game:GetService('Players'):GetChildren()) do
@@ -183,7 +158,7 @@ local Button = Tab:CreateButton({
         end
     end,
 })
-local Button = Tab:CreateButton({
+farmingTab:CreateButton({
     Name = "Teleport to exit door",
     Callback = function()
         for _, v in pairs(workspace:GetDescendants()) do
@@ -193,7 +168,7 @@ local Button = Tab:CreateButton({
         end
     end,
 })
-local Button = Tab:CreateButton({
+farmingTab:CreateButton({
     Name = "Save captured players",
     Callback = function()
         local oldPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
@@ -215,12 +190,9 @@ local Button = Tab:CreateButton({
 })
 
 
-local Tab = Window:CreateTab("Player", 10747373176)
-local Section = Tab:CreateSection("[ Player Options ]")
-local Toggle = Tab:CreateToggle({
+playerTab:CreateSection("[ Player Options ]")
+playerTab:CreateToggle({
     Name = "Anti Ragdoll (Beta)",
-    CurrentValue = false,
-    Flag = "Toggle1",
     Callback = function(bool)
         antiRagdoll = bool
         if antiRagdoll then
@@ -244,10 +216,8 @@ local Toggle = Tab:CreateToggle({
         end
     end,
 })
-local Toggle = Tab:CreateToggle({
+playerTab:CreateToggle({
     Name = "No Slow",
-    CurrentValue = false,
-    Flag = "Toggle1",
     Callback = function(bool)
         NoSlow = bool
         WalkSpeedBypass()
@@ -258,10 +228,8 @@ local Toggle = Tab:CreateToggle({
         end
     end,
 })
-local Toggle = Tab:CreateToggle({
+playerTab:CreateToggle({
     Name = "Active Crawling (Beast)",
-    CurrentValue = false,
-    Flag = "Toggle1",
     Callback = function(bool)
         antiveCrawling = bool
         while antiveCrawling do task.wait()
@@ -273,38 +241,30 @@ local Toggle = Tab:CreateToggle({
         end
     end,
 })
-local Slider = Tab:CreateSlider({
-    Name = "WalkSpeed",
-    Range = {16, 500},
-    Increment = 16,
-    Suffix = "WalkSpeed",
-    CurrentValue = 16,
-    Flag = "Slider1",
-    Callback = function(Value)
-        WalkSpeedBypass()
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-    end,
+playerTab:CreateSlider({
+	Name = "WalkSpeed",
+	Suffix = "Speed",
+	Range = {16, 500},
+	Interval = 1,
+	Default = 16,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end,
 })
-local Slider = Tab:CreateSlider({
-    Name = "JumpPower",
-    Range = {50, 500},
-    Increment = 16,
-    Suffix = "JumpPower",
-    CurrentValue = 50,
-    Flag = "Slider1",
-    Callback = function(Value)
-        JumpPowerBypass()
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
-    end,
+playerTab:CreateSlider({
+	Name = "JumPower",
+	Suffix = "Jump",
+	Range = {50, 500},
+	Interval = 1,
+	Default = 50,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumPower = Value
+	end,
 })
 
 
-local Tab = Window:CreateTab("Esp", 7733774602)
-local Section = Tab:CreateSection("[ Esp Options ]")
-local Toggle = Tab:CreateToggle({
+espTab:CreateToggle({
     Name = "Esp Player",
-    CurrentValue = false,
-    Flag = "Toggle1",
     Callback = function(bool)
         PlayersEsp = bool
         if PlayersEsp then
@@ -321,10 +281,8 @@ local Toggle = Tab:CreateToggle({
         end
     end,
 })
-local Toggle = Tab:CreateToggle({
+espTab:CreateToggle({
     Name = "Esp Computer",
-    CurrentValue = false,
-    Flag = "Toggle1",
     Callback = function(bool)
         CumputersEsp = bool
         if CumputersEsp then
@@ -354,12 +312,6 @@ local Toggle = Tab:CreateToggle({
                     v:Destroy()
                 end
             end
-       end
+        end
     end,
 })
-
-
-
---[ Fix Options ]--
-FixLabel()
-FixTopBar()
