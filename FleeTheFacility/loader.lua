@@ -125,7 +125,7 @@ local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 getgenv().SecureMode = true
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/InfinityMercury/UiLibray/main/Rayfield/Remake.lua'))()
 local Window = Rayfield:CreateWindow({
-   Name = "Infinity Hub | v2.5 | Flee The Facility",
+   Name = "Infinity Hub | v2.0 | Flee The Facility",
    LoadingTitle = "Infinity Hub Loader",
    LoadingSubtitle = "by InfinityMercury",
    ConfigurationSaving = {
@@ -249,6 +249,7 @@ local Toggle = Tab:CreateToggle({
     Flag = "Toggle1",
     Callback = function(bool)
         NoSlow = bool
+        WalkSpeedBypass()
         while NoSlow do task.wait()
             if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed < 16 then
                 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
@@ -261,8 +262,8 @@ local Toggle = Tab:CreateToggle({
     CurrentValue = false,
     Flag = "Toggle1",
     Callback = function(bool)
-        antiRagdoll = bool
-        while antiRagdoll do task.wait()
+        antiveCrawling = bool
+        while antiveCrawling do task.wait()
             for _, v in pairs(game:GetService("Players").LocalPlayer.TempPlayerStatsModule:GetChildren()) do
                 if (v:IsA('BoolValue') and v.Name == 'DisableCrawl') then
                     v.Value = false
