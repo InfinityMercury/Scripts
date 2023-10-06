@@ -175,8 +175,8 @@ local Button = Tab:CreateButton({
               if v.Character:findFirstChild('BeastPowers') then
                 Notification:Notify(
                     {Title = "Infinity Hub | Check Beast", Description = "Beast is "..v.Name},
-                    {OutlineColor = Color3.fromRGB(255,255,255),Time = 5, Type = "image"},
-                    {Image = "http://www.roblox.com/asset/?id=7733964640", ImageColor = Color3.fromRGB(2, 255, 78), Callback = function(State) print(tostring(State)) end}
+                    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
+                    {Image = "http://www.roblox.com/asset/?id=10709775560", ImageColor = Color3.fromRGB(255, 255, 255), Callback = function(State) print(tostring(State)) end}
                 )
               end
             end
