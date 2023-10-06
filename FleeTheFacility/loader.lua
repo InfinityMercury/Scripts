@@ -233,6 +233,7 @@ local Toggle = Tab:CreateToggle({
                 end
             end
         else
+            wait(.5)
             for _, v in pairs(game:GetService("Players").LocalPlayer.TempPlayerStatsModule:GetChildren()) do
                 if (v:IsA('BoolValue') and v.Name == 'Ragdoll') then
                     if (v.Value == true) then
