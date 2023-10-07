@@ -118,15 +118,15 @@ local Window = DevTools:Init({
 --[ Tabs ]--
 local farmingTab = Window:CreateTab({
     Name = "Farming",
-    Icon = "rbxassetid://7743866529"
+    Icon = ""
 })
 local playerTab = Window:CreateTab({
     Name = "Player",
-    Icon = "rbxassetid://7743866529"
+    Icon = ""
 })
 local espTab = Window:CreateTab({
     Name = "Esp",
-    Icon = "rbxassetid://7743866529"
+    Icon = ""
 })
 
 
@@ -258,7 +258,7 @@ playerTab:CreateSlider({
 	Interval = 1,
 	Default = 50,
 	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.JumPower = Value
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
 	end,
 })
 
