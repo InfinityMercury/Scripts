@@ -177,7 +177,7 @@ farmingTab:CreateButton({
         for _, v in pairs(game:GetService('Players'):GetChildren()) do
             if (v.Name ~= game.Players.LocalPlayer.Name) then
                 if (v.TempPlayerStatsModule.Captured.Value == true) then
-                    game.Players.LocalPlayer.Character:PivotTo(v.Character:GetPivot())
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-2.35)
                     wait(.2)
                     KeyPress('E')
                     wait(.25)
@@ -217,13 +217,28 @@ playerTab:CreateToggle({
     end,
 })
 playerTab:CreateToggle({
-    Name = "No Slow",
+    Name = "No Slow (Rework)",
     Callback = function(bool)
         NoSlow = bool
-        WalkSpeedBypass()
-        while NoSlow do task.wait()
-            if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed < 16 then
-                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        if NoSlow then
+            if hookmetamethod then
+                local oldnc
+                oldnc = hookmetamethod(game, "__namecall", newcclosure(function(name, ...)
+                       local Args = {...}
+                       if not checkcaller() and tostring(name) == "PowersEvent" and Args[1] == "Jumped" then
+                           return wait(9e9)
+                       end
+                       return oldnc(name, unpack(Args))
+                end))
+            else
+                WalkSpeedBypass()
+                while NoSlow do task.wait()
+                    while NoSlow do task.wait()
+                        if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed < 16 then
+                            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+                        end
+                    end
+                end
             end
         end
     end,
@@ -241,6 +256,7 @@ playerTab:CreateToggle({
         end
     end,
 })
+playerTab:CreateSection("[ Normal Options ]")
 playerTab:CreateSlider({
 	Name = "WalkSpeed",
 	Suffix = "Speed",
@@ -248,18 +264,28 @@ playerTab:CreateSlider({
 	Interval = 1,
 	Default = 16,
 	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+		getgenv().Speed = Value
 	end,
 })
 playerTab:CreateSlider({
-	Name = "JumPower",
+	Name = "JumpPower",
 	Suffix = "Jump",
 	Range = {50, 500},
 	Interval = 1,
 	Default = 50,
 	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+		getgenv().Jump = Value
 	end,
+})
+playerTab:CreateToggle({
+    Name = "Active Speed and Jump",
+    Callback = function(bool)
+        activeValues = bool
+        while activeValues do task.wait()
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = getgenv().Speed
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = getgenv().Jump
+        end
+    end,
 })
 
 
