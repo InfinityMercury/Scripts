@@ -102,9 +102,9 @@ local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 --[ Library ]--
 local DevTools = loadstring(game:HttpGet("https://raw.githubusercontent.com/05-4/DevTools/main/index.lua"))()
 local Window = DevTools:Init({
-    Name = "Infinity Hub | Main Hub",
+    Name = "Infinity Hub | Flee The Facility",
     Title = "Infinity Hub",
-    Subtitle = "by Infinity Mercury",
+    Subtitle = "by InfinityMercury",
     Icon = "rbxassetid://10723415766",
     LoadingBackgroundImage = "rbxassetid://14980847307",
     Options = {
