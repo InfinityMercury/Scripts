@@ -188,6 +188,23 @@ farmingTab:CreateButton({
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TeleportOldPos)
     end,
 })
+farmingTab:CreateButton({
+    Name = "Teleport computer",
+    Callback = function()
+        for _, v in pairs(Map:GetChildren()) do
+            if (v:IsA('Model') and v.Name == 'ComputerTable') then
+                for _, x in pairs(v:GetChildren()) do
+                    if (x:IsA('Part') and x.Name == 'Screen') then
+                        if (x.Color == Color3.fromRGB(13, 105, 172) or Color3.new(196, 40, 28)) then
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = x.Parent.ComputerTrigger1.CFrame
+                            wait(.1) KeyPress('E') return
+                        end
+                    end
+                end
+            end
+        end
+    end,
+})
 
 
 playerTab:CreateSection("[ Player Options ]")
