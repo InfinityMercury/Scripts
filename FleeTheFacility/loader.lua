@@ -189,7 +189,7 @@ farmingTab:CreateButton({
     end,
 })
 farmingTab:CreateButton({
-    Name = "Teleport computer",
+    Name = "Teleport computer (Beta)",
     Callback = function()
         for _, v in pairs(Map:GetChildren()) do
             if (v:IsA('Model') and v.Name == 'ComputerTable') then
